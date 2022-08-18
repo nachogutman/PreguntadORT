@@ -55,7 +55,8 @@ namespace PreguntadORT.Models{
         }
 
         public static List<Respuesta> ObtenerRespuestas(List<Pregunta> preguntas){
-            List<Respuesta> listaRespuestas = new List<Respuesta>;
+        
+            List<Respuesta> listaRespuestas = new List<Respuesta>();
             
             foreach(Pregunta preg in preguntas){
                 string SQL = "SELECT * FROM Respuestas WHERE IdPregunta = @pIdPregunta";

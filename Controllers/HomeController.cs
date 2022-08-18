@@ -20,7 +20,7 @@ public class HomeController : Controller
 
 
     public IActionResult ConfigurarJuego(){
-        BD.InicializarJuego();
+        Juego.InicializarJuego();
         ViewBag.Categorias = BD.ObtenerCategorias();
         ViewBag.Dificultades = BD.ObtenerDificultades();
         return View();
@@ -32,9 +32,9 @@ public class HomeController : Controller
     }
 
     public IActionResult Jugar(){
-        if(BD.ObtenerProximaPregunta() != " "){
-            ViewBag.Pregunta = BD.ObtenerProximaPregunta();
-            ViewBag.Respuesta = BD.ObtenerProximasRespuestas();
+        if(Juego.ObtenerProximaPregunta() != " "){
+            ViewBag.Pregunta = Juego.ObtenerProximaPregunta();
+            ViewBag.Respuesta = Juego.ObtenerProximasRespuestas();
             return View("Juego");
         }
 
