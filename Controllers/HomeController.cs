@@ -31,6 +31,21 @@ public class HomeController : Controller
         return RedirectToAction("Jugar","Home");
     }
 
+    public IActionResult Jugar(){
+        if(BD.ObtenerProximaPregunta() != " "){
+            ViewBag.Pregunta = BD.ObtenerProximaPregunta();
+            ViewBag.Respuesta = BD.ObtenerProximasRespuestas();
+            return View("Juego");
+        }
+
+        return View("Fin");
+    }
+
+    [HttpPost] IActionResult VerificarRespuesta(int idPregunta, int idRespuesta){
+        ViewBag.Respuesta = Juego.VerificarRespuesta(idPregunta, idRespuesta);
+        return View("Respuesta");
+    }
+
 
     public IActionResult Privacy()
     {
