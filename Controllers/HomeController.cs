@@ -18,6 +18,20 @@ public class HomeController : Controller
         return View();
     }
 
+
+    public IActionResult ConfigurarJuego(){
+        BD.InicializarJuego();
+        ViewBag.Categorias = BD.ObtenerCategorias();
+        ViewBag.Dificultades = BD.ObtenerDificultades();
+        return View();
+    }
+
+    public IActionResult Comenzar(string userName, int dificultad, int categoria){
+        Juego.CargarPartida(userName, dificultad, categoria);
+        return RedirectToAction("Jugar","Home");
+    }
+
+
     public IActionResult Privacy()
     {
         return View();
