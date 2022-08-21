@@ -8,12 +8,13 @@ namespace PreguntadORT.Models{
 
     public static class Juego{
 
-        static string _username = "";
-        static int _puntajeActual = 0;
-        static int _cantidadPreguntasCorrectas = 0;
-        static List<Pregunta> _preguntas = new List<Pregunta>();
-        static List<Respuesta> _respuestas = new List<Respuesta>();     
-        
+        private static string _username = "";
+        private static int _puntajeActual = 0;
+        private static int _cantidadPreguntasCorrectas = 0;
+        private static List<Pregunta> _preguntasSinMezclar = new List<Pregunta>();
+        private static List<Pregunta> _preguntas = new List<Pregunta>();
+        private static List<Respuesta> _respuestas = new List<Respuesta>();     
+
                          
         public static string Username{
             get{return _username;}           
@@ -39,7 +40,11 @@ namespace PreguntadORT.Models{
         
         public static void InicializarJuego(){
 
-
+            _username = "";
+            _puntajeActual = 0;
+            _cantidadPreguntasCorrectas = 0;
+            _preguntas.Clear();
+            _respuestas.Clear();            
 
         }
 
@@ -52,26 +57,68 @@ namespace PreguntadORT.Models{
         }         
 
         public static void CargarPartida(string username, int dificultad, int categoria){
-            _preguntas = BD.ObtenerPreguntas(dificultad, categoria);
-            _respuestas = BD.ObtenerRespuestas(_preguntas);            
 
+            int indiceAleatorio;
+            Pregunta temporal = new Pregunta();
+            _preguntasSinMezclar = BD.ObtenerPreguntas(dificultad, categoria);
+
+            int longitudLista = _preguntasSinMezclar.Lenght();
+            for(int i = 0; i < longitudLista; i++){
+                Random random = new Random();
+                indiceAleatorio = random.Next(1,longitudLista);
+                temporal = _preguntasSinMezclar[i];
+                _preguntasSinMezclar[i] = _preguntasSinMezclar[indiceAleatorio];
+                _preguntasSinMezclar[indiceAleatorio] = temporal;
+            }
+
+            _preguntas = _preguntasSinMezclar;
+            _respuestas = BD.ObtenerRespuestas(_preguntas);   
+            _username = username;
         }
 
         public static Pregunta ObtenerProximaPregunta(){
+
+            return _preguntas[0];
 
         }
 
         public static List<Respuesta> ObtenerProximasRespuestas(int idPregunta){
 
+            List<Respuesta> listaProximasRespuestas = new List<Respuesta>();    
+
+            foreach(Respuesta resp in _respuestas){
+                if(resp.IdPregunta == idPregunta){
+                    listaProximasRespuestas.Add(resp);
+                }
+            }
+            return listaProximasRespuestas;
+
         }
 
         public static bool VerificarRespuesta(int idPregunta, int idRespuesta){
-            if(_respuestas[idRespuesta].Correcta == true)
-        }
+            
+            foreach(Respuesta resp in _respuestas){
+                if(resp.IdRespuesta == idRespuesta){
+                    if(resp.Correcta == 1){
 
+                        _puntajeActual += 500;
+                        _cantidadPreguntasCorrectas++;                     
 
+                        return true;
+                    }
+                }
+            }
 
-        
+            foreach(Pregunta preg in _preguntas){
+                if(preg.IdPregunta == idPregunta){
+                    int indicePreguntaContestada = _preguntas.IndexOf(preg);
+                    _preguntas.RemoveAt(indicePreguntaContestada);
+                }
+            }
+
+            return false;            
+
+        }        
 
     }
 }

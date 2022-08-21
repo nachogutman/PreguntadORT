@@ -5,8 +5,8 @@ using System.Collections.Generic;
 
 namespace PreguntadORT.Models{
     public class Dificultad{        
-        int _idDificultad;        
-        string _nombre;
+        private int _idDificultad;        
+        private string _nombre;
 
         public Dificultad(int pidDificultad, string pnombre){
 

@@ -21,8 +21,8 @@ public class HomeController : Controller
 
     public IActionResult ConfigurarJuego(){
         Juego.InicializarJuego();
-        ViewBag.Categorias = BD.ObtenerCategorias();
-        ViewBag.Dificultades = BD.ObtenerDificultades();
+        ViewBag.Categorias = Juego.ObtenerCategorias();
+        ViewBag.Dificultades = Juego.ObtenerDificultades();
         return View();
     }
 
@@ -32,17 +32,18 @@ public class HomeController : Controller
     }
 
     public IActionResult Jugar(){
+
         if(Juego.ObtenerProximaPregunta() != " "){
-            ViewBag.Pregunta = Juego.ObtenerProximaPregunta();
-            ViewBag.Respuesta = Juego.ObtenerProximasRespuestas();
+            PreguntadORT pregunta = Juego.ObtenerProximaPregunta();            
+            ViewBag.Respuestas = Juego.ObtenerProximasRespuestas(pregunta.IdPregunta);
+            ViewBag.Pregunta = pregunta;
             return View("Juego");
         }
-
         return View("Fin");
     }
 
     [HttpPost] IActionResult VerificarRespuesta(int idPregunta, int idRespuesta){
-        ViewBag.Respuesta = Juego.VerificarRespuesta(idPregunta, idRespuesta);
+        ViewBag.EsCorrecta = Juego.VerificarRespuesta(idPregunta, idRespuesta);
         return View("Respuesta");
     }
 

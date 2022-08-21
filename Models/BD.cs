@@ -34,18 +34,17 @@ namespace PreguntadORT.Models{
 
         public static List<Pregunta> ObtenerPreguntas(int dificultad, int categoria){
             List<Pregunta> listaPreguntas = new List<Pregunta>();
-            string SQL = "SELECT * FROM Preguntas WHERE IdCategoria = @pIdCategoria AND IdDificultad = @pIdDificultad";
+            string SQL = "SELECT * FROM Preguntas WHERE IdCategoria = @pIdCategoria AND IdDificultad = @pIdDificultad";    
 
-            if(dificultad == -1 && categoria == -1){
-                SQL = "SELECT * FROM Preguntas";
-            }
-
-            if(dificultad == -1){
+            if(dificultad == -1 && categoria =! -1){
                 SQL = "SELECT * FROM Preguntas WHERE IdCategoria = @pIdCategoria";
             }
-
-            if(categoria == -1){
+            else if(categoria == -1 && dificultad =! -1){
                 SQL = "SELECT * FROM Preguntas WHERE IdDificultad = @pIdDificultad";
+            }else if(dificultad == -1 && categoria == -1){
+                SQL = "SELECT * FROM Preguntas";
+            }else{
+                SQL = "SELECT * FROM Preguntas WHERE IdDificultad = @pIdDificultad AND IdCategoria = @pIdCategoria";
             }
 
             using(SqlConnection db = new SqlConnection(_connectionString)){

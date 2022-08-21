@@ -6,9 +6,9 @@ using System.Collections.Generic;
 namespace PreguntadORT.Models{
     public class Respuesta{
         
-        int _idRespuesta, _idPregunta, _opcion;
-        string _contenido, _foto;
-        bool _correcta;
+        private int _idRespuesta, _idPregunta, _opcion;
+        private string _contenido, _foto;
+        private bool _correcta;
 
         public Respuesta(int pidPregunta, int popcion, string pcontenido, string pfoto, bool pcorrecta){
 

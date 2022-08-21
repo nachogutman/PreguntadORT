@@ -6,8 +6,8 @@ using System.Collections.Generic;
 namespace PreguntadORT.Models{
     public class Pregunta{
         
-        int _idCategoria, _idPregunta, _idDificultad;
-        string _enunciado, _foto;
+        private int _idCategoria, _idPregunta, _idDificultad;
+        private string _enunciado, _foto;
         
         public Pregunta(int pidCategoria, int pidDificultad, string penunciado, string pfoto){
 

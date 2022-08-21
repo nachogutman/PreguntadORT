@@ -6,9 +6,9 @@ using System.Collections.Generic;
 namespace PreguntadORT.Models{
     public class Categoria{
         
-        int _idCategoria;
-        string _nombre;
-        string _foto;
+        private int _idCategoria;
+        private string _nombre;
+        private string _foto;
 
         public Categoria(string pnombre, string pfoto){
 
