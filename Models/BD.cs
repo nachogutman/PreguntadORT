@@ -12,7 +12,7 @@ namespace PreguntadORT.Models{
     public static class BD{        
 
         private static string server = Dns.GetHostName();
-        private static string _connectionString = @$"Server={server};DataBase=PreguntadOrt;Trusted_Connection=True;";        
+        private static string _connectionString = @$"Server={server}\SQLEXPRESS;DataBase=PreguntadOrt;Trusted_Connection=True;";        
 
         public static List<Categoria> ObtenerCategorias(){
             List<Categoria> listaCategorias = new List<Categoria>();
@@ -36,10 +36,10 @@ namespace PreguntadORT.Models{
             List<Pregunta> listaPreguntas = new List<Pregunta>();
             string SQL = "SELECT * FROM Preguntas WHERE IdCategoria = @pIdCategoria AND IdDificultad = @pIdDificultad";    
 
-            if(dificultad == -1 && categoria =! -1){
+            if(dificultad == -1 && categoria != -1){
                 SQL = "SELECT * FROM Preguntas WHERE IdCategoria = @pIdCategoria";
             }
-            else if(categoria == -1 && dificultad =! -1){
+            else if(categoria == -1 && dificultad != -1){
                 SQL = "SELECT * FROM Preguntas WHERE IdDificultad = @pIdDificultad";
             }else if(dificultad == -1 && categoria == -1){
                 SQL = "SELECT * FROM Preguntas";

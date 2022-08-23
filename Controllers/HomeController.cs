@@ -32,9 +32,8 @@ public class HomeController : Controller
     }
 
     public IActionResult Jugar(){
-
-        if(Juego.ObtenerProximaPregunta() != " "){
-            PreguntadORT pregunta = Juego.ObtenerProximaPregunta();            
+        Pregunta pregunta = Juego.ObtenerProximaPregunta();   
+        if(pregunta.Enunciado != ""){         
             ViewBag.Respuestas = Juego.ObtenerProximasRespuestas(pregunta.IdPregunta);
             ViewBag.Pregunta = pregunta;
             return View("Juego");

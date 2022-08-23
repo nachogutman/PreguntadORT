@@ -62,7 +62,7 @@ namespace PreguntadORT.Models{
             Pregunta temporal = new Pregunta();
             _preguntasSinMezclar = BD.ObtenerPreguntas(dificultad, categoria);
 
-            int longitudLista = _preguntasSinMezclar.Lenght();
+            int longitudLista = _preguntasSinMezclar.Count();
             for(int i = 0; i < longitudLista; i++){
                 Random random = new Random();
                 indiceAleatorio = random.Next(1,longitudLista);
@@ -99,7 +99,7 @@ namespace PreguntadORT.Models{
             
             foreach(Respuesta resp in _respuestas){
                 if(resp.IdRespuesta == idRespuesta){
-                    if(resp.Correcta == 1){
+                    if(resp.Correcta == true){
 
                         _puntajeActual += 500;
                         _cantidadPreguntasCorrectas++;                     
