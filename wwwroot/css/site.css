@@ -1,3 +1,8 @@
+@font-face {
+  font-family: Fuente;
+  src: url('/sources/fuente.ttf') format('truetype');
+}
+
 *{
   margin: 0;
   padding: 0;
@@ -24,6 +29,7 @@ body {
   margin-bottom: 60px;
   background-color: #CCEFF0;
   color: #E1CFFF;
+  font-family: Fuente;
 }
 
 .logo{

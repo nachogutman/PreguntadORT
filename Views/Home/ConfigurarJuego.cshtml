@@ -1,0 +1,14 @@
+@{
+    ViewData["Title"] = "Configurar Juego";
+}
+
+<form class="" method="get" action='@Url.Action("Comenzar", "Home")'>
+
+    <p>"Si de verdad vienes del futuro, <span class="gris">¿de qué fecha estoy hablando?</span>”.</p> 
+    <input type="radio" name="clave" autocomplete="off"  required size=25 maxlength="10" style="color:grey"> <br>
+    <input type="hidden" name="sala" value='@ViewBag.Sala' >
+    <br>
+    <input type="submit" value="Validar" class="btn btn-warning" style="width: 300px;">
+    <input type="reset" value="Restablecer" class="btn btn-secondary" style="width: 300px;">
+
+</form>   
