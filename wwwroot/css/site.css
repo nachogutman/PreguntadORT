@@ -1,3 +1,10 @@
+*{
+  margin: 0;
+  padding: 0;
+  background-color: #CCEFF0;
+  color: #E1CFFF;
+}
+
 html {
   font-size: 14px;
 }
@@ -15,4 +22,10 @@ html {
 
 body {
   margin-bottom: 60px;
+  background-color: #CCEFF0;
+  color: #E1CFFF;
+}
+
+.logo{
+  width: 7%;
 }
