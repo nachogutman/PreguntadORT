@@ -31,9 +31,9 @@ public class HomeController : Controller
         return RedirectToAction("Jugar","Home");
     }
 
-    public IActionResult Jugar(){
-        Pregunta pregunta = Juego.ObtenerProximaPregunta();   
-        if(pregunta.Enunciado != ""){         
+    public IActionResult Jugar(){  
+        if(Juego.ObtenerProximaPregunta() != null){     
+            Pregunta pregunta = Juego.ObtenerProximaPregunta();     
             ViewBag.Respuestas = Juego.ObtenerProximasRespuestas(pregunta.IdPregunta);
             ViewBag.Pregunta = pregunta;
             return View("Juego");

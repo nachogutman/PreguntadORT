@@ -7,7 +7,7 @@
   margin: 0;
   padding: 0;
   background-color: #CCEFF0;
-  color: #E1CFFF;
+  color: #e1cfff;
 }
 
 html {
@@ -33,5 +33,6 @@ body {
 }
 
 .logo{
-  width: 7%;
+  width: 5%;
+  margin: 0 5% 0 5%;
 }
