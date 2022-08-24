@@ -3,29 +3,4 @@
 }
 
 
-<form action='@Url.Action("Comenzar", "Home")' method="get">
-  <div class="form-group row">
-    <label for="staticEmail" class="col-sm-2 col-form-label">Nombre de usuario</label>
-    <div class="col-sm-10">
-      <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="username" name="username">
-    </div>
-  </div>
 
-  <div class="d-flex">
-    <label for="inputPassword" class="col-sm-2 col-form-label">Dificultad</label>
-    @foreach(Dificultad dif in @ViewBag.Dificultades){
-        <div class="form-check form-check-inline">
-            <label class="form-check-label" for="inlineRadio1"> @dif.Nombre </label>
-            <input class="form-check-input" type="radio" name="dificultad" id="inlineRadio1" value="option1">
-        </div>
-    }
-
-    <label for="inputPassword" class="col-sm-2 col-form-label">Categoria</label>
-    @foreach(Categoria cat in @ViewBag.Categorias){
-        <div class="form-check form-check-inline">
-            <label class="form-check-label" for="inlineRadio1"> @cat.Nombre </label>
-            <input class="form-check-input" type="radio" name="categoria" id="inlineRadio1" value="option1">
-        </div>
-    }
-  </div>
-</form>

@@ -78,8 +78,12 @@ namespace PreguntadORT.Models{
 
         public static Pregunta ObtenerProximaPregunta(){
 
-            return _preguntas[0];
-
+            if(_preguntas.Count() > 0){
+                return _preguntas[0];
+            }else{
+                return null;
+            }
+            
         }
 
         public static List<Respuesta> ObtenerProximasRespuestas(int idPregunta){

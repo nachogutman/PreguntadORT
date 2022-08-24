@@ -2,9 +2,54 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
+<div id="index-content" class="text-center">
     <img src="/sources/logoSinFondo.png" style="background: none;">
     <br>
-    <a type="button" class="btn btn-outline-secondary" href='@Url.Action("ConfigurarJuego", "Home")'>Empezar Juego</a>
+    <button onclick='$("#modal").show(); $("#index-content").hide();' class="btn btn-outline-secondary">Empezar Juego </button>
+</div>
 
+<div id="modal">
+    <button id="cerrar" onclick='$("#modal").hide(); $("#index-content").show();'> &times; </button>
+    
+    <form action='@Url.Action("Comenzar", "Home")' method="get">
+        <div class="form-group row">
+            <label for="staticEmail" class="col-sm-2 col-form-label">Nombre de usuario</label>
+
+            <div class="col-sm-10">
+                <input type="text" readonly class="form-control-plaintext" id="staticEmail" name="userName" placeholder="Ingrese su nombre de usuario...">
+            </div>
+        </div>
+
+        <div class="flex-container">
+            <div class="flex-item">
+                <p class="text-center">Dificultad</p>
+                @foreach(Dificultad dif in @ViewBag.Dificultades){
+                    
+                    <div class="form-check">
+                        <label class="form-check-label" for="inlineRadio1"> @dif.Nombre </label>
+                        <input class="form-check-input" type="radio" name="dificultad" id="inlineRadio1" value="@dif.IdDifucultad">
+                    </div>
+                }
+                <div class="form-check">
+                    <label class="form-check-label" for="inlineRadio1"> Todas </label>
+                    <input class="form-check-input" type="radio" name="dificultad" id="inlineRadio1" value="-1">
+                </div>
+            </div>
+            
+            <div class="flex-item">
+                <p class="text-center">Categoria</p>
+                @foreach(Categoria cat in @ViewBag.Categorias){
+                    <div class="form-check">
+                        <label class="form-check-label" for="inlineRadio1"> @cat.Nombre </label>
+                        <input class="form-check-input" type="radio" name="categoria" id="inlineRadio1" value="@cat.IdCategoria">
+                    </div>
+                }
+                <div class="form-check">
+                    <label class="form-check-label" for="inlineRadio1"> Todas </label>
+                    <input class="form-check-input" type="radio" name="categoria" id="inlineRadio1" value="-1">
+                </div>
+            </div>
+            
+        </div>
+    </form>
 </div>

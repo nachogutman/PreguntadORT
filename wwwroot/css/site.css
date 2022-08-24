@@ -6,8 +6,6 @@
 *{
   margin: 0;
   padding: 0;
-  background-color: #CCEFF0;
-  color: #e1cfff;
 }
 
 html {
@@ -35,4 +33,38 @@ body {
 .logo{
   width: 5%;
   margin: 0 5% 0 5%;
+}
+
+#modal{
+  display: none;
+  background-color: white;
+  width: 50%;
+  height: 60%;
+  border: 2px solid #E1CFFF;;
+  border-radius: 20px;
+  padding: 1%;
+  font-size: 30px;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  filter: drop-shadow(0 0 15px rgba(0, 0, 0, .5));
+}
+
+#cerrar{
+  float: right;
+  border: none;
+  background: none;
+
+  font-size: 25px;
+}
+
+.flex-container{
+  display: flex;
+}
+
+.flex-item{ 
+  flex: 1;
 }

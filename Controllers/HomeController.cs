@@ -15,14 +15,15 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
+        Juego.InicializarJuego();
+        ViewBag.Categorias = Juego.ObtenerCategorias();
+        ViewBag.Dificultades = Juego.ObtenerDificultades();
         return View();
     }
 
 
     public IActionResult ConfigurarJuego(){
-        Juego.InicializarJuego();
-        ViewBag.Categorias = Juego.ObtenerCategorias();
-        ViewBag.Dificultades = Juego.ObtenerDificultades();
+
         return View();
     }
 
