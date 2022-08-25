@@ -25,7 +25,7 @@
                     
                     <div class="form-check text-black">
                         <label class="form-check-label" for="inlineRadio1"> @dif.Nombre </label>
-                        <input class="form-check-input" type="radio" name="dificultad" required id="inlineRadio1" value="@dif.IdDifucultad">
+                        <input class="form-check-input" type="radio" name="dificultad" required id="inlineRadio1" value=@dif.IdDifucultad>
                     </div>
                 }
                 <div class="form-check text-black">
@@ -39,7 +39,7 @@
                 @foreach(Categoria cat in @ViewBag.Categorias){
                     <div class="form-check text-black">
                         <label class="form-check-label" for="inlineRadio1"> @cat.Nombre </label>
-                        <input class="form-check-input" type="radio" name="categoria" required id="inlineRadio1" value="@cat.IdCategoria">
+                        <input class="form-check-input" type="radio" name="categoria" required id="inlineRadio1" value=@cat.IdCategoria>
                     </div>
                 }
                 <div class="form-check text-black">

@@ -9,7 +9,7 @@ using Dapper;
 
 namespace PreguntadORT.Models{
     
-    public static class BD{        
+    public class BD{        
 
         private static string server = Dns.GetHostName();
         private static string _connectionString = @$"Server={server};DataBase=PreguntadOrt;Trusted_Connection=True;";        
@@ -34,8 +34,9 @@ namespace PreguntadORT.Models{
 
         public static List<Pregunta> ObtenerPreguntas(int dificultad, int categoria){
             List<Pregunta> listaPreguntas = new List<Pregunta>();
-            string SQL = "SELECT * FROM Preguntas WHERE IdCategoria = @pIdCategoria AND IdDificultad = @pIdDificultad";    
+            string SQL = "SELECT * FROM Preguntas WHERE IdDificultad = @pIdDificultad AND IdCategoria = @pIdCategoria";    
 
+            /*
             if(dificultad == -1 && categoria != -1){
                 SQL = "SELECT * FROM Preguntas WHERE IdCategoria = @pIdCategoria";
             }
@@ -45,10 +46,10 @@ namespace PreguntadORT.Models{
                 SQL = "SELECT * FROM Preguntas";
             }else{
                 SQL = "SELECT * FROM Preguntas WHERE IdDificultad = @pIdDificultad AND IdCategoria = @pIdCategoria";
-            }
+            } */
 
             using(SqlConnection db = new SqlConnection(_connectionString)){
-                listaPreguntas = db.Query<Pregunta>(SQL, new{pIdCategoria = categoria, pIdDificultad = dificultad}).ToList();
+                listaPreguntas = db.Query<Pregunta>(SQL, new{pIdDificultad = dificultad, pIdCategoria = categoria}).ToList();
             }
             return listaPreguntas;
         }
@@ -60,7 +61,7 @@ namespace PreguntadORT.Models{
             foreach(Pregunta preg in preguntas){
                 string SQL = "SELECT * FROM Respuestas WHERE IdPregunta = @pIdPregunta";
                 using(SqlConnection db = new SqlConnection(_connectionString)){
-                    listaRespuestas.AddRange(db.Query<Respuesta>(SQL, new{pIdPregunta = preg}));
+                    listaRespuestas.AddRange(db.Query<Respuesta>(SQL, new{pIdPregunta = preg.IdPregunta}));
                 }
             }
             return listaRespuestas;
