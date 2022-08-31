@@ -35,8 +35,7 @@ namespace PreguntadORT.Models{
         public static List<Pregunta> ObtenerPreguntas(int dificultad, int categoria){
             List<Pregunta> listaPreguntas = new List<Pregunta>();
             string SQL = "SELECT * FROM Preguntas WHERE IdDificultad = @pIdDificultad AND IdCategoria = @pIdCategoria";    
-
-            /*
+            
             if(dificultad == -1 && categoria != -1){
                 SQL = "SELECT * FROM Preguntas WHERE IdCategoria = @pIdCategoria";
             }
@@ -46,7 +45,7 @@ namespace PreguntadORT.Models{
                 SQL = "SELECT * FROM Preguntas";
             }else{
                 SQL = "SELECT * FROM Preguntas WHERE IdDificultad = @pIdDificultad AND IdCategoria = @pIdCategoria";
-            } */
+            }
 
             using(SqlConnection db = new SqlConnection(_connectionString)){
                 listaPreguntas = db.Query<Pregunta>(SQL, new{pIdDificultad = dificultad, pIdCategoria = categoria}).ToList();
