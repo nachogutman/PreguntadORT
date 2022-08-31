@@ -22,6 +22,9 @@ public class HomeController : Controller
     }
 
     [HttpGet] public IActionResult Comenzar(string userName, int dificultad, int categoria){
+        Console.WriteLine(userName);
+        Console.WriteLine(dificultad);
+        Console.WriteLine(categoria);
         Juego.CargarPartida(userName, dificultad, categoria);
         return RedirectToAction("Jugar","Home");
     }

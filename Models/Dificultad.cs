@@ -19,7 +19,7 @@ namespace PreguntadORT.Models{
             _nombre = ""; 
         }
 
-        public int IdDifucultad{
+        public int IdDificultad{
             get{return _idDificultad;}
             set{_idDificultad = value;}
         }
