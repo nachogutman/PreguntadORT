@@ -22,23 +22,23 @@ public class HomeController : Controller
     }
 
     [HttpGet] public IActionResult Comenzar(string userName, int dificultad, int categoria){
-        Console.WriteLine(userName);
-        Console.WriteLine(dificultad);
-        Console.WriteLine(categoria);
+        
         Juego.CargarPartida(userName, dificultad, categoria);
         return RedirectToAction("Jugar","Home");
     }
 
     public IActionResult Jugar(){  
         Pregunta pregunta = Juego.ObtenerProximaPregunta(); 
-        List<Respuesta> resp = Juego.ObtenerProximasRespuestas(pregunta.IdPregunta);
-        ViewBag.Respuestas = resp;
-        ViewBag.Pregunta = pregunta;
-        ViewBag.Username = Juego.Username;
-        return View();
+        if(pregunta != null){
+            List<Respuesta> resp = Juego.ObtenerProximasRespuestas(pregunta.IdPregunta);
+            ViewBag.Respuestas = resp;
+            ViewBag.Pregunta = pregunta;
+            return View();
+        }
+        return View("Fin");
     }
 
-    [HttpPost] public IActionResult VerificarRespuesta(int idPregunta, int idRespuesta){
+    public IActionResult VerificarRespuesta(int idPregunta, int idRespuesta){
         ViewBag.EsCorrecta = Juego.VerificarRespuesta(idPregunta, idRespuesta);
         return View("Respuesta");
     }

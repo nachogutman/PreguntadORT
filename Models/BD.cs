@@ -33,6 +33,7 @@ namespace PreguntadORT.Models{
         }
 
         public static List<Pregunta> ObtenerPreguntas(int dificultad, int categoria){
+            
             List<Pregunta> listaPreguntas = new List<Pregunta>();
             string SQL = "SELECT * FROM Preguntas WHERE IdDificultad = @pIdDificultad AND IdCategoria = @pIdCategoria";    
             
