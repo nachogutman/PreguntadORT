@@ -43,8 +43,7 @@ namespace PreguntadORT.Models{
             _username = "";
             _puntajeActual = 0;
             _cantidadPreguntasCorrectas = 0;
-            _preguntas.Clear();
-            Console.WriteLine(_preguntas.Count());
+            _preguntas.Clear();      
             _respuestas.Clear();   
             _preguntasSinMezclar.Clear();         
 
@@ -67,12 +66,10 @@ namespace PreguntadORT.Models{
             int longitudLista = _preguntas.Count();
 
             for(int i = 0; i < longitudLista; i++){
-                
                 indiceAleatorio = random.Next(0,longitudLista);
                 Pregunta temporal = _preguntas[indiceAleatorio];
                 _preguntas[indiceAleatorio] = _preguntas[i];
-                _preguntas[i] = temporal;
-                
+                _preguntas[i] = temporal;         
             }            
             _respuestas = BD.ObtenerRespuestas(_preguntas);   
             _username = username;
@@ -112,7 +109,7 @@ namespace PreguntadORT.Models{
                         _cantidadPreguntasCorrectas++;                                         
 
                         return true;
-                    }
+                    }                    
                 }
             }
 

@@ -79,6 +79,7 @@ body {
 
 .button{
   border: none;
+  text-align: center;
   border-radius: 9999px;
   background-color: #E1CFFF;
   padding: .8%;
@@ -134,4 +135,10 @@ body {
   margin-top: 30px;
   width: 20%;
   border-radius: 20px;
+}
+
+.respuestaCorrecta{
+  text-align: center;
+  margin: 100px;
+  font-size: 125px;
 }
