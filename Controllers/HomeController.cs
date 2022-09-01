@@ -39,8 +39,7 @@ public class HomeController : Controller
     }
 
     public IActionResult VerificarRespuesta(int idPregunta, int idRespuesta){
-        ViewBag.EsCorrecta = Juego.VerificarRespuesta(idPregunta, idRespuesta);
-        
+        ViewBag.EsCorrecta = Juego.VerificarRespuesta(idPregunta, idRespuesta);        
         return View("Respuesta");
     }
 

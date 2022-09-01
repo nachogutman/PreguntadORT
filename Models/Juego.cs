@@ -100,6 +100,12 @@ namespace PreguntadORT.Models{
 
         public static bool VerificarRespuesta(int idPregunta, int idRespuesta){
 
+            foreach(Pregunta preg in _preguntas){
+                if(preg.IdPregunta == idPregunta){
+                    int indicePreguntaContestada = _preguntas.IndexOf(preg);
+                    _preguntas.RemoveAt(indicePreguntaContestada);
+                }
+            }
                         
             foreach(Respuesta resp in _respuestas){
                 if(resp.IdRespuesta == idRespuesta){
@@ -112,14 +118,7 @@ namespace PreguntadORT.Models{
                     }                    
                 }
             }
-
-            foreach(Pregunta preg in _preguntas){
-                if(preg.IdPregunta == idPregunta){
-                    int indicePreguntaContestada = _preguntas.IndexOf(preg);
-                    _preguntas.RemoveAt(indicePreguntaContestada);
-                }
-            }
-
+            
             return false;            
 
         }        

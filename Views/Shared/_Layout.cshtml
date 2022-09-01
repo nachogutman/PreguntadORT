@@ -12,7 +12,7 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light box-shadow">
             <div class="container-fluid">
-                <a class="navbar-brand logo m-2" asp-area="" asp-controller="Home" asp-action="Index"><img class="w-100" src="/sources/logoSinFondo.png"></a>
+                <a class="navbar-brand logo m-3" asp-area="" asp-controller="Home" asp-action="Index"><img class="w-100" src="/sources/logoSinFondo.png"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -20,14 +20,14 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link pl-4" asp-area="" asp-controller="Home" asp-action="Index" style="font-size:20px; color:solid black;">HOME</a>
                         </li>
                     </ul>
                 </div>
 
                 @if(Juego.Username != ""){
                     <div class="score">
-                            <h3> @Juego.Username - @Juego.PuntajeActual </h3>
+                            <h3> @Juego.Username - @Juego.PuntajeActual pts </h3>
                     </div>
                 }
             </div>

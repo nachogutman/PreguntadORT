@@ -7,11 +7,17 @@
     <h1 class="respuestaCorrecta" style="color: green;">RESPUESTA CORRECTA</h1>
     
 }else{
-    <h1 class="respuestaCorrecta" style="color: red;">RESPUESTA INCORRECTA</h1>
+    <div class="text-center">
+
+        <h1 class="respuestaCorrecta" style="color: red;">RESPUESTA INCORRECTA</h1>
+        <p>Respuesta Correcta: </p>
+
+    </div>
+    
 }
 
 <div class="text-center">
-    <a class="button" style="text-decoration: none;" href='@Url.Action("Jugar", "Home")'>Siguiente pregunta -></a>
+        <a class="button" style="text-decoration: none;" href='@Url.Action("Jugar", "Home")'>Siguiente pregunta -></a>
 </div>
 
 
