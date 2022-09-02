@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System.ComponentModel.Design;
+using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using PreguntadORT.Models;
 
@@ -39,8 +40,30 @@ public class HomeController : Controller
     }
 
     public IActionResult VerificarRespuesta(int idPregunta, int idRespuesta){
-        ViewBag.EsCorrecta = Juego.VerificarRespuesta(idPregunta, idRespuesta);        
-        return View("Respuesta");
+
+        Pregunta pregunta = Juego.ObtenerProximaPregunta(); 
+        List<Respuesta> resp = Juego.ObtenerProximasRespuestas(pregunta.IdPregunta);
+
+        if(Juego.VerificarRespuesta(idPregunta, idRespuesta)){
+            ViewBag.RespuestaCorrecta = idRespuesta;
+            ViewBag.RespuestaIncorrecta = -1;
+        }
+        else{
+            ViewBag.RespuestaIncorrecta = idRespuesta;
+            foreach(Respuesta respu in resp){
+                if(respu.Correcta == true){
+                    ViewBag.RespuestaCorrecta = respu.IdRespuesta;
+                }
+            }
+        }
+
+        ViewBag.Respuestas = resp;
+        ViewBag.Pregunta = pregunta;
+        ViewBag.FueRespondida = true;
+
+        
+        
+        return View("Jugar");
     }
 
 
