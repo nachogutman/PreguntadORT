@@ -4,7 +4,9 @@
 // Write your JavaScript code.
 var myVar = setInterval(myTimer, 1000);
 function myTimer() {
-    if(Juego.Fin == true){
+    if(document.getElementById('Fin').value == false){
         $("#timeClock").html(parseInt($("#timeClock").html()) + 1);
+    } else {
+        $("#timeClock").html(parseInt($("#timeClock").html()));
     }
 }  

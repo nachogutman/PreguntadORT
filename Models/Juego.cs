@@ -60,7 +60,7 @@ namespace PreguntadORT.Models{
             _respuestas.Clear();   
             _preguntasSinMezclar.Clear(); 
             _segundos = 0;       
-
+            _fin = false;
         }
 
         public static List<Categoria> ObtenerCategorias(){
@@ -87,6 +87,7 @@ namespace PreguntadORT.Models{
             }            
             _respuestas = BD.ObtenerRespuestas(_preguntas);   
             _username = username;
+            _segundos = 0;
         }
 
         public static Pregunta ObtenerProximaPregunta(){            
