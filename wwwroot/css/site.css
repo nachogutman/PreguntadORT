@@ -145,6 +145,14 @@ body {
   
 }
 
+.link{
+  color: green;
+}
+
+.link:hover{
+  color: #E1CFFF;
+}
+
 
 .foto{
   display: block;  
@@ -166,6 +174,6 @@ body {
   left: 50%;
   -ms-transform: translate(-50%);
   transform: translate(-50%);
-  font-size: 40px;
+  font-size: 48px;  
   color: #a58cce;
 }
