@@ -1,0 +1,16 @@
+@{
+    ViewData["Title"] = "Fin";
+}
+
+<div class="text-center mb-5">
+    <br>
+    <h1 class="mt-5 p-4" style="font-size: 110px; color:white;"> @Juego.Username </h1>
+    <h1 class="mb-5 p-4" style="font-size: 80px;  "> Puntaje: @Juego.PuntajeActual - Respuestas Correctas: @Juego.CantidadPreguntasCorrectas </h1>    
+    
+    <a class="button text-center" href='@Url.Action("Index", "Home")'>Reintentar</a>
+    <div class="p-5">
+        <a href="https://www.instagram.com/riverplate/?hl=es" target="_blank"><img src="/sources/instagram.png" class="m-3" style="width: 4%;" alt=""></a>
+        <a href="https://twitter.com/riverplate" target="_blank"><img src="/sources/twitter.png" class="m-3" style="width: 4%;" alt=""></a>
+    </div>
+    
+</div>    

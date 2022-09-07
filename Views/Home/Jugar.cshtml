@@ -19,11 +19,11 @@
                     @if (@ViewBag.FueRespondida == true)
                     {
                         if(resp.IdRespuesta == @ViewBag.RespuestaCorrecta){
-                            <p class="answers" style="background-color: green;" href='@Url.Action("VerificarRespuesta", "Home", new {idRespuesta = @resp.IdRespuesta, idPregunta = @ViewBag.Pregunta.IdPregunta})'> @resp.Contenido </p>
+                            <p class="" style="background-color: green; text-align: center; text-decoration:none; color: white; border-radius: 15px;  width: 96%; height: 175px;  font-size: 38px; box-sizing: content-box; position: relative; align-items: center; display: flex; align-items: center; justify-content: center; box-shadow: 6px 6px 8px 0px black;" href='@Url.Action("VerificarRespuesta", "Home", new {idRespuesta = @resp.IdRespuesta, idPregunta = @ViewBag.Pregunta.IdPregunta})'> @resp.Contenido </p>
                         }else if(resp.IdRespuesta == @ViewBag.RespuestaIncorrecta){
-                            <p class="answers" style="background-color: red;" href='@Url.Action("VerificarRespuesta", "Home", new {idRespuesta = @resp.IdRespuesta, idPregunta = @ViewBag.Pregunta.IdPregunta})'> @resp.Contenido </p>
+                            <p class="" style="background-color: red; text-align: center; text-decoration:none; color: white; border-radius: 15px;  width: 96%; height: 175px;  font-size: 38px; box-sizing: content-box; position: relative; align-items: center; display: flex; align-items: center; justify-content: center; box-shadow: 6px 6px 8px 0px black;" href='@Url.Action("VerificarRespuesta", "Home", new {idRespuesta = @resp.IdRespuesta, idPregunta = @ViewBag.Pregunta.IdPregunta})'> @resp.Contenido </p>
                         }else{
-                            <p class="answers" href='@Url.Action("VerificarRespuesta", "Home", new {idRespuesta = @resp.IdRespuesta, idPregunta = @ViewBag.Pregunta.IdPregunta})'> @resp.Contenido </p>
+                            <p class="" style="background-color: #a58cce; text-align: center; text-decoration:none; color: white; border-radius: 15px;  width: 96%; height: 175px;  font-size: 38px; box-sizing: content-box; position: relative; align-items: center; display: flex; align-items: center; justify-content: center; box-shadow: 6px 6px 8px 0px black;" href='@Url.Action("VerificarRespuesta", "Home", new {idRespuesta = @resp.IdRespuesta, idPregunta = @ViewBag.Pregunta.IdPregunta})'> @resp.Contenido </p>
                         }                        
                     }else{
                         <a class="answers" href='@Url.Action("VerificarRespuesta", "Home", new {idRespuesta = @resp.IdRespuesta, idPregunta = @ViewBag.Pregunta.IdPregunta})'> @resp.Contenido </a>
