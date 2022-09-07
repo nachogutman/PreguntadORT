@@ -3,6 +3,7 @@ using Microsoft.VisualBasic.CompilerServices;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Timers;
 
 namespace PreguntadORT.Models{
 
@@ -14,7 +15,12 @@ namespace PreguntadORT.Models{
         private static List<Pregunta> _preguntasSinMezclar = new List<Pregunta>();
         private static List<Pregunta> _preguntas = new List<Pregunta>();
         private static List<Respuesta> _respuestas = new List<Respuesta>();     
+        private static System.Timers.Timer aTimer;
+        private static int _segundos = 0;
 
+        public static int Segundos{
+            get{return _segundos;}
+        }
                          
         public static string Username{
             get{return _username;}           
@@ -45,7 +51,8 @@ namespace PreguntadORT.Models{
             _cantidadPreguntasCorrectas = 0;
             _preguntas.Clear();      
             _respuestas.Clear();   
-            _preguntasSinMezclar.Clear();         
+            _preguntasSinMezclar.Clear(); 
+            _segundos = 0;       
 
         }
 
@@ -73,7 +80,6 @@ namespace PreguntadORT.Models{
             }            
             _respuestas = BD.ObtenerRespuestas(_preguntas);   
             _username = username;
-
         }
 
         public static Pregunta ObtenerProximaPregunta(){            
@@ -126,7 +132,27 @@ namespace PreguntadORT.Models{
             
             return false;            
 
-        }        
+        }   
+
+        public static void ComenzarTimer()
+        {
+            aTimer = new System.Timers.Timer(1000);
+            aTimer.Elapsed += Tick;
+            aTimer.AutoReset = true;
+            aTimer.Enabled = true;
+        }
+
+        public static void FinalizarTimer()
+        {
+            aTimer.Stop();
+            aTimer.Dispose();
+        }
+
+        public static void Tick(Object source, ElapsedEventArgs e)
+        {
+            _segundos++;
+        }
+
 
     }
 }

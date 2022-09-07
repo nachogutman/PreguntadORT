@@ -25,6 +25,7 @@ public class HomeController : Controller
     [HttpGet] public IActionResult Comenzar(string userName, int dificultad, int categoria){
         
         Juego.CargarPartida(userName, dificultad, categoria);
+        Juego.ComenzarTimer();
         return RedirectToAction("Jugar","Home");
     }
 
@@ -36,6 +37,7 @@ public class HomeController : Controller
             ViewBag.Pregunta = pregunta;
             return View();
         }
+        Juego.FinalizarTimer();
         return View("Fin");
     }
 
