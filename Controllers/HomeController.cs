@@ -37,6 +37,7 @@ public class HomeController : Controller
             ViewBag.Pregunta = pregunta;
             return View();
         }
+        Juego.Fin = true;
         Juego.FinalizarTimer();
         return View("Fin");
     }

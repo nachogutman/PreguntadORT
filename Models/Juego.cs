@@ -18,6 +18,13 @@ namespace PreguntadORT.Models{
         private static System.Timers.Timer aTimer;
         private static int _segundos = 0;
 
+        private static bool _fin = false;
+
+        public static bool Fin{
+            get{return _fin;}
+            set{_fin = value;}
+        }
+
         public static int Segundos{
             get{return _segundos;}
         }

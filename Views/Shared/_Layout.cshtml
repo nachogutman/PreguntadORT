@@ -25,9 +25,10 @@
                     </ul>
                 </div>
 
-                @if(Juego.Username != ""){
-                    <div class="secs"><span id="timeClock"> @Juego.Segundos</span> segundos</div>
+                @if(@Juego.Username != ""){
 
+                    <div class="secs"><span id="timeClock"> @Juego.Segundos</span> segundos</div>
+                   
                     <div class="score">
                             <h3> @Juego.Username /  @Juego.PuntajeActual pts </h3>
                     </div>
