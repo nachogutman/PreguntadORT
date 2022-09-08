@@ -66,6 +66,13 @@ namespace PreguntadORT.Models{
             }
             return listaRespuestas;
         }
+
+        public static void ActualizarContadorSeleccionada(int idRespuesta){
+            string SQL = "UPDATE Respuestas SET ContadorSeleccionada = ContadorSeleccionada + 1 WHERE IdRespuesta = @pidRespuesta";
+            using(SqlConnection db = new SqlConnection(_connectionString)){
+                db.Execute(SQL, new{pidRespuesta = idRespuesta});
+            }
+        }
     }
 
 }
