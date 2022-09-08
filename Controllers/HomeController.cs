@@ -39,6 +39,9 @@ public class HomeController : Controller
         }
         Juego.Fin = true;
         Juego.FinalizarTimer();
+        DateTime now = DateTime.Now;
+        Puntaje newPuntaje = new Puntaje(Juego.PuntajeActual, Juego.Username, now);
+        BD.AgregarPuntaje(newPuntaje);
         return View("Fin");
     }
 
