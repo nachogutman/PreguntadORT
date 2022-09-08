@@ -47,6 +47,8 @@ public class HomeController : Controller
         Pregunta pregunta = Juego.ObtenerProximaPregunta(); 
         List<Respuesta> resp = Juego.ObtenerProximasRespuestas(pregunta.IdPregunta);
 
+        BD.ActualizarContadorSeleccionada(idRespuesta);
+
         if(Juego.VerificarRespuesta(idPregunta, idRespuesta)){
             ViewBag.RespuestaCorrecta = idRespuesta;
             ViewBag.RespuestaIncorrecta = -1;

@@ -67,7 +67,31 @@ namespace PreguntadORT.Models{
             return listaRespuestas;
         }
 
-        
+        public static void ActualizarContadorSeleccionada(int idRespuesta){
+            string SQL = "UPDATE Respuestas SET ContadorSeleccionada = ContadorSeleccionada + 1 WHERE IdRespuesta = @pidRespuesta";
+            using(SqlConnection db = new SqlConnection(_connectionString)){
+                db.Execute(SQL, new{pidRespuesta = idRespuesta});
+            }
+        }
+
+        public static List<Puntaje> ObtenerPuntajes(){
+            
+            List<Puntaje> listaPuntajes = new List<Puntaje>();
+            string SQL = "SELECT * FROM Puntajes ORDER BY Puntaje desc";
+            using(SqlConnection db = new SqlConnection(_connectionString)){
+                listaPuntajes = db.Query<Puntaje>(SQL).ToList();
+            }
+            return listaPuntajes;
+        }
+
+        public static void AgregarPuntaje(Puntaje punt){
+
+            string SQL = "INSERT INTO Puntajes(UserName, Puntos, FechaHora) VALUES(@pUserName, @pPuntos, @pFechaHora)";
+            using(SqlConnection db = new SqlConnection(_connectionString)){
+                db.Execute(SQL, new {pUserName = punt.UserName, pPuntos = punt.Puntos, pFechaHora = punt.FechaHora});
+            }
+
+        }
     }
 
 }

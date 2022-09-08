@@ -6,17 +6,18 @@ using System.Collections.Generic;
 namespace PreguntadORT.Models{
     public class Respuesta{
         
-        private int _idRespuesta, _idPregunta, _opcion;
+        private int _idRespuesta, _idPregunta, _opcion, _contadorSeleccionada;
         private string _contenido, _foto;
         private bool _correcta;
 
-        public Respuesta(int pidPregunta, int popcion, string pcontenido, string pfoto, bool pcorrecta){
+        public Respuesta(int pidPregunta, int popcion, string pcontenido, string pfoto, bool pcorrecta, int pcontadorSeleccionada){
 
             _idPregunta = pidPregunta;
             _opcion = popcion;
             _contenido = pcontenido;
             _foto = pfoto;
-            _correcta = pcorrecta;            
+            _correcta = pcorrecta;
+            _contadorSeleccionada = pcontadorSeleccionada;  
         }
 
         public Respuesta(){
@@ -25,6 +26,7 @@ namespace PreguntadORT.Models{
             _contenido = "";
             _foto = "";
             _correcta = true;
+            _contadorSeleccionada = 0;
         }
 
         public int IdRespuesta{
