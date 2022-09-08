@@ -74,6 +74,11 @@ public class HomeController : Controller
         return View("Jugar");
     }
 
+    public IActionResult Highscores(){
+        ViewBag.listaPuntajes = BD.ObtenerPuntajes();
+        return View();
+    }
+
 
     public IActionResult Privacy()
     {

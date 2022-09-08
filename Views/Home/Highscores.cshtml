@@ -2,3 +2,32 @@
     ViewData["Title"] = "Puntajes";
 }
 
+
+<div class="text-center">
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>                
+                <th scope="col">Usuario</th>
+                <th scope="col">Puntos</th>
+                <th scope="col">Fecha</th>
+            </tr>
+        </thead>
+        <tbody >
+            @foreach (Puntaje punt in @ViewBag.listaPuntajes)
+            {
+                <tr class="filaTablaUsuario">
+                
+                    <th scope="row">@punt.UserName</th>
+                    <td>@punt.Puntos</td>
+                    <td>@punt.FechaHora</td>   
+                       
+                </tr> 
+            }           
+        </tbody>
+    </table>
+</div>
+
+    
+   
+    
+

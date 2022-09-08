@@ -75,9 +75,8 @@ namespace PreguntadORT.Models{
         }
 
         public static List<Puntaje> ObtenerPuntajes(){
-            
             List<Puntaje> listaPuntajes = new List<Puntaje>();
-            string SQL = "SELECT * FROM Puntajes ORDER BY Puntaje desc";
+            string SQL = "SELECT TOP 6 * FROM Puntajes order by Puntos desc";
             using(SqlConnection db = new SqlConnection(_connectionString)){
                 listaPuntajes = db.Query<Puntaje>(SQL).ToList();
             }
@@ -90,8 +89,6 @@ namespace PreguntadORT.Models{
             using(SqlConnection db = new SqlConnection(_connectionString)){
                 db.Execute(SQL, new {pUserName = punt.UserName, pPuntos = punt.Puntos, pFechaHora = punt.FechaHora});
             }
-
         }
     }
-
 }
