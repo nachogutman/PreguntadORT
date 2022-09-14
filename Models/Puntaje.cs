@@ -12,16 +12,20 @@ namespace PreguntadORT.Models{
 
         private DateTime _fechaHora;
 
-        public Puntaje(int ppuntos,string puserName,DateTime pfechaHora){
+        private int _tiempo;
+
+        public Puntaje(int ppuntos,string puserName,DateTime pfechaHora, int ptiempo){
             _puntos = ppuntos;
             _userName = puserName;
             _fechaHora = pfechaHora;
+            _tiempo = ptiempo;
         }
 
         public Puntaje(){
             _puntos = 0;
             _userName = "";
             _fechaHora = DateTime.MinValue;
+            _tiempo = 0;
         }
 
         public int IdPuntaje{
@@ -42,6 +46,11 @@ namespace PreguntadORT.Models{
         public DateTime FechaHora{
             get{return _fechaHora;}
             set{_fechaHora = value;}
+        }
+
+        public int Tiempo{
+            get{return _tiempo;}
+            set{_tiempo = value;}
         }
 
     }

@@ -76,7 +76,7 @@ namespace PreguntadORT.Models{
 
         public static List<Puntaje> ObtenerPuntajes(){
             List<Puntaje> listaPuntajes = new List<Puntaje>();
-            string SQL = "SELECT TOP 6 * FROM Puntajes order by Puntos desc";
+            string SQL = "SELECT TOP 8 * FROM Puntajes order by Puntos desc";
             using(SqlConnection db = new SqlConnection(_connectionString)){
                 listaPuntajes = db.Query<Puntaje>(SQL).ToList();
             }
@@ -85,9 +85,9 @@ namespace PreguntadORT.Models{
 
         public static void AgregarPuntaje(Puntaje punt){
 
-            string SQL = "INSERT INTO Puntajes(UserName, Puntos, FechaHora) VALUES(@pUserName, @pPuntos, @pFechaHora)";
+            string SQL = "INSERT INTO Puntajes(UserName, Puntos, FechaHora, Tiempo) VALUES(@pUserName, @pPuntos, @pFechaHora, @pTiempo)";
             using(SqlConnection db = new SqlConnection(_connectionString)){
-                db.Execute(SQL, new {pUserName = punt.UserName, pPuntos = punt.Puntos, pFechaHora = punt.FechaHora});
+                db.Execute(SQL, new {pUserName = punt.UserName, pPuntos = punt.Puntos, pFechaHora = punt.FechaHora, pTiempo = punt.Tiempo});
             }
         }
     }

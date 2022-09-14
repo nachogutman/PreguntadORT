@@ -38,10 +38,11 @@ public class HomeController : Controller
             return View();
         }
         Juego.Fin = true;
-        Juego.FinalizarTimer();
         DateTime now = DateTime.Now;
-        Puntaje newPuntaje = new Puntaje(Juego.PuntajeActual, Juego.Username, now);
+        Puntaje newPuntaje = new Puntaje(Juego.PuntajeActual, Juego.Username, now, Juego.Segundos);
         BD.AgregarPuntaje(newPuntaje);
+        Juego.FinalizarTimer();
+        
         return View("Fin");
     }
 
@@ -67,9 +68,7 @@ public class HomeController : Controller
 
         ViewBag.Respuestas = resp;
         ViewBag.Pregunta = pregunta;
-        ViewBag.FueRespondida = true;
-
-        
+        ViewBag.FueRespondida = true;        
         
         return View("Jugar");
     }
