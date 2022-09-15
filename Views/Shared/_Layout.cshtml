@@ -29,7 +29,7 @@
                     </ul>
                 </div>
 
-                @if(@Juego.Username != ""){
+                @if(@Juego.Username != "" && @Juego.Fin == false){
 
                     <div class="secs"><span id="timeClock"> @Juego.Segundos</span> segundos</div>
                    
@@ -48,11 +48,7 @@
 
      <input type="hidden" value=@Juego.Fin id="Fin">
 
-    <footer class="footer text-muted box-shadow shadow-lg">
-        <div class="container">
-            &copy; 2022 - PreguntadORT - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
+    
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

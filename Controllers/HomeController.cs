@@ -75,6 +75,7 @@ public class HomeController : Controller
 
     public IActionResult Highscores(){
         ViewBag.listaPuntajes = BD.ObtenerPuntajes();
+        Juego.Fin = true;
         return View();
     }
 
