@@ -9,10 +9,10 @@
 <div style="" class="siguientePregunta">
     
     <img src="@ViewBag.Pregunta.Foto" class="foto" alt="" style="margin-left:39%;">  
-    @if (@ViewBag.FueRespondida == true){
-        <a class="button text-center ml-3 border h-100" style="text-decoration:none;" href='@Url.Action("Jugar", "Home")'> Siguiente pregunta </a>   
-    }  
-
+    
+    <a class="button text-center ml-3 border h-100" style="text-decoration:none;" href='@Url.Action("Jugar", "Home")'> Siguiente pregunta </a>   
+    
+    
 </div>
 
     <div class="mt-3" style="width: 90%; margin:auto;">
@@ -20,24 +20,62 @@
             @foreach (Respuesta resp in @ViewBag.Respuestas)
             {                         
                 <div class="col-6">
-                    @if (@ViewBag.FueRespondida == true)
-                    {
-                        if(resp.IdRespuesta == @ViewBag.RespuestaCorrecta){
-                            <p class="" style="background-color: green; text-align: center; text-decoration:none; color: white; border-radius: 15px;  width: 96%; height: 165px;  font-size: 38px; box-sizing: content-box; position: relative; align-items: center; display: flex; align-items: center; justify-content: center; box-shadow: 6px 6px 8px 0px black;" href='@Url.Action("VerificarRespuesta", "Home", new {idRespuesta = @resp.IdRespuesta, idPregunta = @ViewBag.Pregunta.IdPregunta})'> @resp.Contenido </p>
-                        }else if(resp.IdRespuesta == @ViewBag.RespuestaIncorrecta){
-                            <p class="" style="background-color: red; text-align: center; text-decoration:none; color: white; border-radius: 15px;  width: 96%; height: 165px;  font-size: 38px; box-sizing: content-box; position: relative; align-items: center; display: flex; align-items: center; justify-content: center; box-shadow: 6px 6px 8px 0px black;" href='@Url.Action("VerificarRespuesta", "Home", new {idRespuesta = @resp.IdRespuesta, idPregunta = @ViewBag.Pregunta.IdPregunta})'> @resp.Contenido </p>
-                        }else{
-                            <p class="" style="background-color: #a58cce; text-align: center; text-decoration:none; color: white; border-radius: 15px;  width: 96%; height: 165px;  font-size: 38px; box-sizing: content-box; position: relative; align-items: center; display: flex; align-items: center; justify-content: center; box-shadow: 6px 6px 8px 0px black;" href='@Url.Action("VerificarRespuesta", "Home", new {idRespuesta = @resp.IdRespuesta, idPregunta = @ViewBag.Pregunta.IdPregunta})'> @resp.Contenido </p>
-                        }                        
-                    }else{
-                        <a class="answers" href='@Url.Action("VerificarRespuesta", "Home", new {idRespuesta = @resp.IdRespuesta, idPregunta = @ViewBag.Pregunta.IdPregunta})'> @resp.Contenido </a>
-                    }
-
+                    
+                    <button class="answers @resp.IdRespuesta" onclick="Verificar(@ViewBag.Pregunta.IdPregunta, @resp.IdRespuesta);" id="@resp.IdRespuesta"> @resp.Contenido </button>
                     
                 </div>                             
             }
         </div>
     </div>
 
+
+<script>
+    
+    let div1 = document.querySelector(".puntaje");
+    let sumar = 500;
+    let fueRespondida = false;
+
+    function Verificar(idP, idR){                
+        
+        if(fueRespondida == false){
+
+            $.ajax({
+
+            url: '/Home/VerificarRespuesta',
+            data: {idPregunta: idP, idRespuesta: idR},
+            type:'POST',
+            dataType:'JSON',            
+            success:
+                function (respC){                      
+
+                    $('.answers').css("background-color", "grey");                                  
+                    
+                    console.log(respC);
+                    console.log(idR);
+                    if (respC == true){ 
+
+                        $('#' + idR).css("background-color", "green");                                 
+                        div1.innerText = parseInt(div1.innerText) + sumar;
+                        
+                        
+                    }else{
+                        
+                        $('#' + idR).css("background-color", "red");
+                    }   
+
+                },
+            error:
+                function(){
+                    console.log('error');
+                }
+
+            });
+
+        }
+        fueRespondida = true;        
+
+    }
+
+</script>
 
 

@@ -113,13 +113,7 @@ namespace PreguntadORT.Models{
         }
 
         public static bool VerificarRespuesta(int idPregunta, int idRespuesta){
-
-            /*foreach(Pregunta preg in _preguntas){
-                if(preg.IdPregunta == idPregunta){                    
-                    _preguntas.RemoveAt(_preguntas.IndexOf(preg));
-                }
-            } */
-
+            
             for(int i = 0; i < _preguntas.Count();i++){
                 if(_preguntas[i].IdPregunta == idPregunta){
                     _preguntas.RemoveAt(i);

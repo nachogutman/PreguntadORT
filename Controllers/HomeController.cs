@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.Design;
+﻿using System;
+using System.Net;
+using System.ComponentModel.Design;
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using PreguntadORT.Models;
@@ -34,7 +36,7 @@ public class HomeController : Controller
         if(pregunta != null){
             List<Respuesta> resp = Juego.ObtenerProximasRespuestas(pregunta.IdPregunta);
             ViewBag.Respuestas = resp;
-            ViewBag.Pregunta = pregunta;
+            ViewBag.Pregunta = pregunta;            
             return View();
         }
         Juego.Fin = true;
@@ -44,33 +46,38 @@ public class HomeController : Controller
         Juego.FinalizarTimer();
         
         return View("Fin");
-    }
+    }    
 
-    public IActionResult VerificarRespuesta(int idPregunta, int idRespuesta){
+    public bool VerificarRespuesta(int idPregunta, int idRespuesta){
 
-        Pregunta pregunta = Juego.ObtenerProximaPregunta(); 
-        List<Respuesta> resp = Juego.ObtenerProximasRespuestas(pregunta.IdPregunta);
-
+        bool resultado = Juego.VerificarRespuesta(idPregunta, idRespuesta);
         BD.ActualizarContadorSeleccionada(idRespuesta);
+        return resultado;
+
+        
+
+        /*
 
         if(Juego.VerificarRespuesta(idPregunta, idRespuesta)){
-            ViewBag.RespuestaCorrecta = idRespuesta;
-            ViewBag.RespuestaIncorrecta = -1;
+            
+            return ViewBag.RespuestaCorrecta = idRespuesta;   
+            //ViewBag.RespuestaIncorrecta = -1;
         }
         else{
-            ViewBag.RespuestaIncorrecta = idRespuesta;
+            //ViewBag.RespuestaIncorrecta = idRespuesta;
             foreach(Respuesta respu in resp){
                 if(respu.Correcta == true){
-                    ViewBag.RespuestaCorrecta = respu.IdRespuesta;
+                    return ViewBag.RespuestaCorrecta = respu.IdRespuesta;
                 }
             }
         }
 
-        ViewBag.Respuestas = resp;
-        ViewBag.Pregunta = pregunta;
-        ViewBag.FueRespondida = true;        
+        return -1; */
         
-        return View("Jugar");
+
+        //ViewBag.Respuestas = resp;
+        //ViewBag.Pregunta = pregunta;         
+        
     }
 
     public IActionResult Highscores(){
