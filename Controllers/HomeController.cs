@@ -4,16 +4,19 @@ using System.ComponentModel.Design;
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using PreguntadORT.Models;
+using System.Linq.Expressions;
+using System.IO;
+using Microsoft.AspNetCore.Hosting;
 
 namespace PreguntadORT.Controllers;
 
 public class HomeController : Controller
 {
+    private IWebHostEnvironment Environment;
     private readonly ILogger<HomeController> _logger;
-
-    public HomeController(ILogger<HomeController> logger)
-    {
-        _logger = logger;
+    public HomeController(IWebHostEnvironment _environment)
+    {        
+        Environment = _environment;
     }
 
     public IActionResult Index()
@@ -86,6 +89,66 @@ public class HomeController : Controller
         return View();
     }
 
+    public IActionResult Preguntas(){
+
+        ViewBag.Preguntas = BD.ObtenerPreguntas(-1,-1);
+        ViewBag.Categorias = BD.ObtenerCategorias();
+        ViewBag.Dificultades = BD.ObtenerDificultades();
+        return View();
+    }
+
+    public IActionResult EliminarPregunta(int IdPregunta){
+        BD.EliminarPregunta(IdPregunta);             
+        return RedirectToAction("Preguntas","Home");
+    }
+
+    public IActionResult AgregarPregunta(){
+
+        ViewBag.Categorias = BD.ObtenerCategorias();
+        ViewBag.Dificultades = BD.ObtenerDificultades();      
+        return View();
+    }
+
+    public IActionResult AgregarRespuesta(int IdPregunta){
+
+        ViewBag.IdPregunta = IdPregunta;   
+        return View();
+    }
+
+    [HttpPost] public IActionResult GuardarPregunta(int IdCategoria, int IdDificultad, string Enunciado, IFormFile Foto){         
+
+        if(Foto.Length > 0)
+        {
+            string wwwRootLocal = this.Environment.ContentRootPath + @"\wwwroot\preguntas\" + Foto.FileName;
+            using(var stream = System.IO.File.Create(wwwRootLocal)){
+                
+                Foto.CopyToAsync(stream);
+            }
+        } 
+
+        Pregunta newPreg = new Pregunta(IdCategoria, IdDificultad, Enunciado, ("/preguntas/" + Foto.FileName));
+        BD.AgregarPregunta(newPreg);
+
+        return RedirectToAction("Preguntas","Home");
+        
+    }   
+
+    [HttpPost] public IActionResult GuardarRespuesta(int IdPregunta, string Contenido, bool Correcta){         
+        
+        int cont = 0;
+        List<Pregunta> listaPreguntas = new List<Pregunta>();
+        listaPreguntas = BD.ObtenerPreguntas(-1,-1);
+        ViewBag.listaRespuestas = BD.ObtenerRespuestas(listaPreguntas);        
+        foreach(Respuesta resp in ViewBag.listaRespuestas){
+            if(resp.IdPregunta == IdPregunta){
+                cont++;
+            }
+        }        
+
+        Respuesta newResp = new Respuesta(IdPregunta, cont+1, Contenido, "", Correcta, 0);
+        BD.AgregarRespuesta(newResp);    
+        return RedirectToAction("Preguntas","Home");
+    }
 
     public IActionResult Privacy()
     {

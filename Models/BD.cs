@@ -12,7 +12,7 @@ namespace PreguntadORT.Models{
     public class BD{        
 
         private static string server = Dns.GetHostName();
-        private static string _connectionString = @$"Server={server}\SQLEXPRESS;DataBase=PreguntadOrt;Trusted_Connection=True;";        
+        private static string _connectionString = @$"Server={server};DataBase=PreguntadOrt;Trusted_Connection=True;";        
 
         public static List<Categoria> ObtenerCategorias(){
             List<Categoria> listaCategorias = new List<Categoria>();
@@ -90,5 +90,29 @@ namespace PreguntadORT.Models{
                 db.Execute(SQL, new {pUserName = punt.UserName, pPuntos = punt.Puntos, pFechaHora = punt.FechaHora, pTiempo = punt.Tiempo});
             }
         }
+
+        public static void AgregarPregunta(Pregunta preg){
+            string SQL = "INSERT INTO Preguntas(IdCategoria, IdDificultad, Enunciado, Foto) VALUES(@pIdCategoria, @pIdDificultad, @pEnunciado, @pFoto)";
+            using(SqlConnection db = new SqlConnection(_connectionString)){
+                db.Execute(SQL, new {pIdCategoria = preg.IdCategoria, pIdDificultad = preg.IdDificultad, pEnunciado = preg.Enunciado, pFoto = preg.Foto});
+            }
+        }
+
+        public static void AgregarRespuesta(Respuesta resp){
+            string SQL = "INSERT INTO Respuestas(IdPregunta, Opcion, Contenido, Correcta, Foto, ContadorSeleccionada) VALUES(@pIdPregunta, @pOpcion, @pContenido, @pCorrecta, @pFoto, @pContadorSeleccionada)";
+            using(SqlConnection db = new SqlConnection(_connectionString)){
+                db.Execute(SQL, new {pIdPregunta  = resp.IdPregunta, pOpcion = resp.Opcion, pContenido = resp.Contenido, pCorrecta = resp.Correcta, pFoto = resp.Foto, pContadorSeleccionada = resp.ContadorSeleccionada});
+            }
+        }
+
+        public static void EliminarPregunta(int IdPregunta){            
+            
+            string SQL = "DELETE FROM Preguntas WHERE IdPregunta = @pIdPregunta";
+            using(SqlConnection db = new SqlConnection(_connectionString)){
+                db.Execute(SQL, new{pIdPregunta = IdPregunta});
+            }
+        }
+
+
     }
 }

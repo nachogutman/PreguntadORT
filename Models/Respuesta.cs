@@ -59,5 +59,10 @@ namespace PreguntadORT.Models{
             set{_foto = value;}
         }
 
+        public int ContadorSeleccionada{
+            get {return _contadorSeleccionada;}
+            set{_contadorSeleccionada = value;}
+        }
+
     }
 }

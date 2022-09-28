@@ -1,0 +1,40 @@
+@{
+    ViewData["Title"] = "Preguntas";
+}
+
+
+<h1 class="text-center mt-5" style="font-size: 100px; color:#a58cce;">PREGUNTAS</h1>
+<a href='@Url.Action("AgregarPregunta","Home")' class="button" style="float:right; margin:0; margin-bottom:2%; margin-right:10%;" target="_blank">Agregar Pregunta +</a>
+
+<div class="text-center" style="margin: 0;">
+    <table class="table points rounded">
+        <thead class="thead">
+            <tr>                
+                <th scope="col">Pregunta</th>
+                <th scope="col">Categoría</th>
+                <th scope="col">Dificultad</th>
+                <th scope="col">Enunciado</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody >
+            @foreach (Pregunta preg in @ViewBag.Preguntas)
+            {
+                <tr class="filaTablaUsuario">
+                
+                    <th scope="row"> @preg.IdPregunta </th>
+                    <td> @preg.IdCategoria </td>
+                    <td> @preg.IdDificultad </td>   
+                    <td> @preg.Enunciado </td>
+                    <td><a href='@Url.Action("EliminarPregunta","Home", new {IdPregunta = @preg.IdPregunta})' class="btn btn-danger">Borrar Pregunta</a></td>
+                    <td><a href='@Url.Action("AgregarRespuesta","Home", new {IdPregunta = @preg.IdPregunta})' class="btn btn-warning" target="_blank">Agregar Respuesta</a></td>
+
+                </tr> 
+            }           
+        </tbody>
+    </table>
+</div>
+
+
+    

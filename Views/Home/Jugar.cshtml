@@ -10,7 +10,7 @@
     
     <img src="@ViewBag.Pregunta.Foto" class="foto" alt="" style="margin-left:39%;">  
     
-    <a class="button text-center ml-3 border h-100" style="text-decoration:none;" href='@Url.Action("Jugar", "Home")'> Siguiente pregunta </a>   
+    <a id="siguiente" class="button text-center ml-3 border h-100" style="text-decoration:none; display: none;" href='@Url.Action("Jugar", "Home")'> Siguiente pregunta </a>   
     
     
 </div>
@@ -63,6 +63,7 @@
                         $('#' + idR).css("background-color", "red");
                     }   
 
+                    $('#siguiente').css("display","block");
                 },
             error:
                 function(){
